@@ -2,6 +2,7 @@ import { mock, MockProxy, mockReset } from "jest-mock-extended";
 
 import { IAlunoProfessorCursoDisciplinaRepository } from "../../../../domain/repositories/IAlunoProfessorCursoDisciplina";
 import ChangeDisciplinaUseCase from "./ChangeDisciplinaUseCase";
+import { AlunoProfessorCursoDisciplina } from "@prisma/client";
 
 describe("ChangeDisciplinaUseCase", () => {
   let changeDisciplinaUseCase: ChangeDisciplinaUseCase;
@@ -19,9 +20,9 @@ describe("ChangeDisciplinaUseCase", () => {
   it("Deve alterar as disciplinas corretamente", async () => {
     const id_aluno = "1";
     const disciplina = [1, 2, 3, 5];
-    alunoProfessorCursoDisciplinaRepository.findListProfessorCursoDisciplinaArrayNumber.mockResolvedValue(
-      [1, 4]
-    );
+    alunoProfessorCursoDisciplinaRepository.findByMany.mockResolvedValue([
+      {} as AlunoProfessorCursoDisciplina,
+    ]);
     alunoProfessorCursoDisciplinaRepository.changeDisciplina.mockResolvedValue([
       {
         id: 1,

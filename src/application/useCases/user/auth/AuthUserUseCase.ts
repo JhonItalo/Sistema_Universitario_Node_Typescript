@@ -10,7 +10,7 @@ class AuthUserUseCase implements IAuth {
   constructor(@inject("UserRepository") private userRepository: IUserRepository) {}
 
   async execute(email: string, password: string): Promise<ITokenAuth> {
-    const user = await this.userRepository.findBy<{ email: string }>({ email });
+    const user = await this.userRepository.findBy({ email });
 
     if (!user) {
       throw new UnauthorizedError("Email ou senha incorreto");

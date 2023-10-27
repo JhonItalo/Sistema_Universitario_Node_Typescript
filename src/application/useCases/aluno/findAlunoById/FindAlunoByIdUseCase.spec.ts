@@ -20,7 +20,7 @@ describe("FindAlunoByIdUseCase", () => {
   const alunoId = "teste123";
 
   it("Deve encontrar um aluno com o id especificado", async () => {
-    alunoRepository.findById.mockResolvedValue({} as Aluno);
+    alunoRepository.findBy.mockResolvedValue({} as Aluno);
 
     const aluno = await findAlunoByIdUseCase.execute(alunoId);
 
@@ -28,7 +28,7 @@ describe("FindAlunoByIdUseCase", () => {
   });
 
   it("Deve lançar o error DataNotFoundError se aluno não existir", async () => {
-    alunoRepository.findById.mockResolvedValue(null);
+    alunoRepository.findBy.mockResolvedValue(null);
 
     await expect(findAlunoByIdUseCase.execute(alunoId)).rejects.toThrowError(DataNotFoundError);
     await expect(findAlunoByIdUseCase.execute(alunoId)).rejects.toHaveProperty(
