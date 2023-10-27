@@ -1,0 +1,6 @@
+DB_USER=jhon
+DB_PASS=jhon2
+DB_PORT=5432
+SC_KEY=14bba3999bfb468f2c6d0718a66d5c0409
+
+DATABASE_URL="postgresql://jhon:jhon2@localhost:5432/datatest?schema=public"

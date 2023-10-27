@@ -1,0 +1,24 @@
+import { Request, Response } from "express";
+import { container } from "tsyringe";
+import ErrorHandle from "../../erros/ErrorHandle";
+import FindProfessorByEmailUseCase from "../../../application/useCases/professor/findProfessorByEmail/FindByEmailProfessorUseCase";
+import { IHttpRequest, IHttpResponse } from "../../protocols/http";
+
+class FindProfessorByEmailController {
+  async handle(request: IHttpRequest): Promise<IHttpResponse> {
+    const findProfessorByEmailUseCase = container.resolve(FindProfessorByEmailUseCase);
+    try {
+      const { email } = request.params;
+      const professor = await findProfessorByEmailUseCase.execute(email);
+
+      const resolve = {
+        response: professor,
+        error: null,
+      };
+      return { statusCode: 200, data: resolve };
+    } catch (error) {
+      return ErrorHandle(error);
+    }
+  }
+}
+export default FindProfessorByEmailController;

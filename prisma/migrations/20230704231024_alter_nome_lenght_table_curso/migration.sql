@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Curso" ALTER COLUMN "nome" SET DATA TYPE VARCHAR(40);

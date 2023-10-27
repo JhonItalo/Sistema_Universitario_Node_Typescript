@@ -1,0 +1,2223 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Universidade API",
+        "version": "1.0.0",
+        "description": "API para básica para o controle de uma universidade",
+        "contact": {
+            "email": "jhon2italo@gmail.com"
+        }
+    },
+    "paths": {
+        "/curso": {
+            "post": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Criar curso",
+                "description": "Criar um novo curso",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "id_departamento": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "Bacharelado em ciência da computação",
+                                    "id_departamento": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Curso criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": "number",
+                                        "nome": "string",
+                                        "id_departamento": "number"
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito de dados.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Error menssage"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Error menssage"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Deletar curso",
+                "description": "Deletar um curso",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id_curso": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id_curso": 12
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Curso deletado com sucesso"
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Curso não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Curso não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Atualizar curso",
+                "description": "Atualizar informações de um curso",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "nome": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "nome": "Novo nome do curso"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Curso atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": "number",
+                                        "nome": "string",
+                                        "id_departamento": "number"
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Curso não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Curso não existe no sistema"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito de dados.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Curso já cadastrado no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Listar cursos",
+                "description": "Listar todos os cursos",
+                "responses": {
+                    "200": {
+                        "description": "Cursos listados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": [
+                                        {
+                                            "id": 1,
+                                            "nome": "Bacharelado em ciência da computação",
+                                            "id_departamento": 1
+                                        },
+                                        {
+                                            "id": 2,
+                                            "nome": "Engenharia de software",
+                                            "id_departamento": 1
+                                        }
+                                    ],
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/curso/{id}/disciplina": {
+            "get": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Encontrar disciplinas por curso",
+                "description": "Encontrar todas as disciplinas vinculadas a um curso específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do curso",
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Disciplinas encontradas com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example 1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 44,
+                                                    "id_curso": 6,
+                                                    "id_disciplina": 12,
+                                                    "disciplina": {
+                                                        "nome": "Projeto social",
+                                                        "carga_horaria": 120
+                                                    }
+                                                },
+                                                {
+                                                    "id": 50,
+                                                    "id_curso": 6,
+                                                    "id_disciplina": 11,
+                                                    "disciplina": {
+                                                        "nome": "Design web",
+                                                        "carga_horaria": 80
+                                                    }
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example 2": {
+                                        "value": {
+                                            "response": [],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/curso/departamento/{id}/disciplina": {
+            "get": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Encontrar disciplinas por ID do departamento",
+                "description": "Encontrar todas as disciplinas associadas a cursos de um departamento específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do departamento",
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Disciplinas encontradas com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example 1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 44,
+                                                    "id_curso": 6,
+                                                    "id_disciplina": 12,
+                                                    "curso": {
+                                                        "nome": "BCC"
+                                                    },
+                                                    "disciplina": {
+                                                        "nome": "Projeto social",
+                                                        "carga_horaria": 120
+                                                    }
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example 2": {
+                                        "value": {
+                                            "response": [],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/curso/{id}/grade": {
+            "get": {
+                "tags": [
+                    "Curso"
+                ],
+                "summary": "Encontrar grade curricular por curso",
+                "description": "Encontrar a grade de disciplinas e professores associadas a um curso específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID do curso",
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Grade encontrada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 44,
+                                                    "id_professor": "0e99dc48-102c-4686-b5fb-b85ecb232d3a",
+                                                    "id_cursoDisciplina": 6,
+                                                    "cursoDisciplina": {
+                                                        "id_curso": 52,
+                                                        "id_disciplina": 16,
+                                                        "disciplina": {
+                                                            "nome": "Projeto social",
+                                                            "carga_horaria": 120
+                                                        },
+                                                        "curso": {
+                                                            "nome": "BCC"
+                                                        }
+                                                    },
+                                                    "professor": {
+                                                        "nome": "Professor 1"
+                                                    }
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example2": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 55,
+                                                    "id_curso": 6,
+                                                    "id_disciplina": 14,
+                                                    "disciplina": {
+                                                        "id": 14,
+                                                        "nome": "Inteligência Artificial",
+                                                        "carga_horaria": 150
+                                                    },
+                                                    "professor": {
+                                                        "id": 103,
+                                                        "nome": "Professor 3"
+                                                    }
+                                                },
+                                                {
+                                                    "id": 60,
+                                                    "id_curso": 6,
+                                                    "id_disciplina": 13,
+                                                    "disciplina": {
+                                                        "id": 13,
+                                                        "nome": "Banco de Dados Avançado",
+                                                        "carga_horaria": 100
+                                                    },
+                                                    "professor": {
+                                                        "id": 104,
+                                                        "nome": "Professor 4"
+                                                    }
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/disciplina": {
+            "post": {
+                "tags": [
+                    "Disciplina"
+                ],
+                "summary": "Criar disciplina",
+                "description": "Criar uma nova disciplina",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "carga_horaria": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "Inteligência Artificial",
+                                    "carga_horaria": 120
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Disciplina criada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Inteligência Artificial",
+                                        "carga_horaria": 120
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito na criação.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Disciplina já cadastrada no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Disciplina"
+                ],
+                "summary": "Deletar disciplina",
+                "description": "Deletar uma disciplina",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Disciplina deletada com sucesso"
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Disciplina não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Disciplina não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Disciplina"
+                ],
+                "summary": "Atualizar disciplina",
+                "description": "Atualizar disciplina",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "carga_horaria": {
+                                        "type": "number",
+                                        "nullable": true
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "nome": "Inteligência Artificial",
+                                    "carga_horaria": 150
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Disciplina atualizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Inteligência Artificial",
+                                        "carga_horaria": 150
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Disciplina não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Disciplina não existe no sistema"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito na atualização.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Disciplina já cadastrada no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Disciplina"
+                ],
+                "summary": "Listar disciplinas",
+                "description": "Listar disciplinas",
+                "responses": {
+                    "200": {
+                        "description": "Disciplinas listadas com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example 1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 1,
+                                                    "nome": "Inteligência Artificial",
+                                                    "carga_horaria": 120
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "nome": "Design Web",
+                                                    "carga_horaria": 80
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example 2": {
+                                        "value": {
+                                            "response": [],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/professor": {
+            "post": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Criar professor",
+                "description": "Criar um novo professor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "telefone": {
+                                        "type": "string"
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "enum": [
+                                            "M",
+                                            "F"
+                                        ]
+                                    },
+                                    "id_departamento": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "john doe",
+                                    "email": "john@gmail.com",
+                                    "cpf": "000000000000",
+                                    "telefone": "0000",
+                                    "sexo": "M",
+                                    "id_departamento": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Professor criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "john doe",
+                                        "email": "johnc@gmail.com",
+                                        "cpf": "00000000000",
+                                        "telefone": "0000",
+                                        "sexo": "M",
+                                        "createt_at": "2023-08-16T14:32:20.134Z",
+                                        "id_departamento": 1
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito de dados.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Deletar professor",
+                "description": "Deletar um professor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "Professor deletado com sucesso"
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Professor não encontrado",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Atualizar professor",
+                "description": "Atualizar professor",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "nullable": true
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "enum": [
+                                            "M",
+                                            "F"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "telefone": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "id_departamento": {
+                                        "type": "number",
+                                        "nullable": true
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "nome": "Novo Nome",
+                                    "email": "novo@example.com",
+                                    "sexo": "M",
+                                    "telefone": "1111",
+                                    "id_departamento": 2,
+                                    "password": "novasenha"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Professor atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Novo Nome",
+                                        "email": "novo@example.com",
+                                        "sexo": "M",
+                                        "telefone": "1111",
+                                        "createt_at": "2023-08-07T22:31:25.330Z",
+                                        "id_departamento": 2
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida ou erro no processamento.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Professor não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Professor não existe no sistema"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito na atualização.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Email já cadastrado no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Listar professores",
+                "description": "Listar professores",
+                "responses": {
+                    "200": {
+                        "description": "Professores listados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example 1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 1,
+                                                    "nome": "Nome do Professor 1",
+                                                    "email": "professor1@example.com",
+                                                    "sexo": "M",
+                                                    "telefone": "1111",
+                                                    "createt_at": "2023-08-07T22:31:25.330Z",
+                                                    "id_departamento": 2
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "nome": "Nome do Professor 2",
+                                                    "email": "professor2@example.com",
+                                                    "sexo": "F",
+                                                    "telefone": "2222",
+                                                    "createt_at": "2023-08-07T22:31:25.330Z",
+                                                    "id_departamento": 1
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example 2": {
+                                        "value": {
+                                            "response": [],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/professor/email/{email}": {
+            "get": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Buscar professor por email",
+                "description": "Buscar um professor pelo seu endereço de e-mail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "description": "E-mail do professor a ser buscado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Professor encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Nome do Professor",
+                                        "email": "professor@example.com",
+                                        "sexo": "M",
+                                        "telefone": "1111",
+                                        "createt_at": "2023-08-07T22:31:25.330Z",
+                                        "id_departamento": 2
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Professor não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Professor não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/professor/cpf/{cpf}": {
+            "get": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Buscar professor por CPF",
+                "description": "Buscar um professor pelo seu número de CPF",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "CPF do professor a ser buscado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Professor encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Nome do Professor",
+                                        "email": "professor@example.com",
+                                        "sexo": "M",
+                                        "telefone": "1111",
+                                        "createt_at": "2023-08-07T22:31:25.330Z",
+                                        "id_departamento": 2
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida ou erro no processamento.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Professor não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Professor não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/professor/disciplina": {
+            "post": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Associar professor a curso e disciplina",
+                "description": "Associar um professor a um curso e disciplina específicos",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id_professor": {
+                                        "type": "string"
+                                    },
+                                    "cursoDisciplina": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id_professor": "0e99dc48-102c-4686-b5fb-b85ecb232d3a",
+                                    "cursoDisciplina": [
+                                        12,
+                                        15
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Associação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "id_professor": "0e99dc48-102c-4686-b5fb-b85ecb232d3a",
+                                        "id_cursoDisciplina": 5
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida ou erro no processamento.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/professor/{id}/grade": {
+            "get": {
+                "tags": [
+                    "Professor"
+                ],
+                "summary": "Buscar cursos e disciplinas de um professor",
+                "description": "Buscar grade associada a um professor específico",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do professor"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cursos e disciplinas encontrados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": [
+                                        {
+                                            "id": 19,
+                                            "id_professor": "0e99dc48-102c-4686-b5fb-b85ecb232d3a",
+                                            "id_curso_disciplina": 50,
+                                            "cursoDisciplina": {
+                                                "curso": {
+                                                    "id": 6,
+                                                    "nome": "BCC",
+                                                    "id_departamento": 1
+                                                },
+                                                "disciplina": {
+                                                    "id": 11,
+                                                    "nome": "Design web",
+                                                    "carga_horaria": 80
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno": {
+            "post": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Criar aluno",
+                "description": "Criar um novo aluno",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "cpf": {
+                                        "type": "string"
+                                    },
+                                    "telefone": {
+                                        "type": "string"
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "enum": [
+                                            "M",
+                                            "F"
+                                        ]
+                                    },
+                                    "id_curso": {
+                                        "type": "number"
+                                    },
+                                    "id_turma": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "john doe",
+                                    "email": "john@gmail.com",
+                                    "cpf": "000000000000",
+                                    "telefone": "0000",
+                                    "sexo": "M",
+                                    "id_curso": 2,
+                                    "id_turma": 4
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Professor criado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "john doe",
+                                        "email": "john@gmail.com",
+                                        "cpf": "00000000000",
+                                        "telefone": "0000",
+                                        "sexo": "M",
+                                        "createt_at": "2023-08-16T14:32:20.134Z",
+                                        "id_turma": 2,
+                                        "id_curso": 4
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito de dados.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Deletar aluno",
+                "description": "Deletar um aluno",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "aluno deletado com sucesso"
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "aluno não encontrado",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Atualizar aluno",
+                "description": "Atualizar aluno",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "nullable": true
+                                    },
+                                    "sexo": {
+                                        "type": "string",
+                                        "enum": [
+                                            "M",
+                                            "F"
+                                        ],
+                                        "nullable": true
+                                    },
+                                    "telefone": {
+                                        "type": "string",
+                                        "nullable": true
+                                    },
+                                    "id_curso": {
+                                        "type": "number",
+                                        "nullable": true
+                                    },
+                                    "id_turma": {
+                                        "type": "number",
+                                        "nullable": true
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "nome": "Novo Nome",
+                                    "email": "novo@example.com",
+                                    "sexo": "novo genero",
+                                    "telefone": "novo telefone",
+                                    "id_curso": "novo curso",
+                                    "id_turma": "nova turma",
+                                    "password": "novasenha"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "aluno atualizado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Novo Nome",
+                                        "email": "novo@example.com",
+                                        "sexo": "M",
+                                        "telefone": "1111",
+                                        "createt_at": "2023-08-07T22:31:25.330Z",
+                                        "id_curso": 1,
+                                        "id_turma": 5
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida ou erro no processamento.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "aluno não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "aluno não existe no sistema"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito na atualização.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Email já cadastrado no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Listar alunos",
+                "description": "Listar alunos",
+                "responses": {
+                    "200": {
+                        "description": "alunos listados com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example 1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 1,
+                                                    "nome": "Nome do aluno 1",
+                                                    "email": "aluno@example.com",
+                                                    "sexo": "M",
+                                                    "telefone": "1111",
+                                                    "createt_at": "2023-08-07T22:31:25.330Z",
+                                                    "id_turma": 18,
+                                                    "id_curso": 53
+                                                },
+                                                {
+                                                    "id": 2,
+                                                    "nome": "Nome do Professor 2",
+                                                    "email": "professor2@example.com",
+                                                    "sexo": "F",
+                                                    "telefone": "2222",
+                                                    "createt_at": "2023-08-07T22:31:25.330Z",
+                                                    "id_turma": 18,
+                                                    "id_curso": 53
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example 2": {
+                                        "value": {
+                                            "response": [],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/cpf/{cpf}": {
+            "get": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Buscar aluno por CPF",
+                "description": "Buscar aluno por CPF",
+                "parameters": [
+                    {
+                        "name": "cpf",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "CPF do aluno a ser buscado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "aluno encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Nome do aluno",
+                                        "email": "aluno@example.com",
+                                        "sexo": "M",
+                                        "telefone": "1111",
+                                        "createt_at": "2023-08-07T22:31:25.330Z",
+                                        "id_turma": 18,
+                                        "id_curso": 53
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida ou erro no processamento.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "aluno não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "aluno não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/email/{email}": {
+            "get": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Buscar aluno por email",
+                "description": "Buscar aluno por e-mail",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "description": "E-mail do aluno a ser buscado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "aluno encontrado com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "Nome do aluno",
+                                        "email": "aluno@example.com",
+                                        "sexo": "M",
+                                        "telefone": "1111",
+                                        "createt_at": "2023-08-07T22:31:25.330Z",
+                                        "id_turma": 18,
+                                        "id_curso": 53
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "aluno não encontrado.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "aluno não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/grade/{id}": {
+            "get": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Buscar grade de aluno",
+                "description": "Buscar grade de um aluno",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do aluno"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "grade encontrada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": [
+                                        {
+                                            "id": 51,
+                                            "id_aluno": "3c39faa8-1c9d-4e0c-9118-21225f728090",
+                                            "id_professorCursoDisciplina": 24,
+                                            "professorCursoDisciplina": {
+                                                "professor": {
+                                                    "nome": "mauro "
+                                                },
+                                                "cursoDisciplina": {
+                                                    "curso": {
+                                                        "id": 52,
+                                                        "nome": "BCC"
+                                                    },
+                                                    "disciplina": {
+                                                        "nome": "calculo 2",
+                                                        "carga_horaria": 120
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/aluno/disciplina": {
+            "post": {
+                "tags": [
+                    "Aluno"
+                ],
+                "summary": "Associar aluno a grade curricular",
+                "description": "Associar aluno a grade curricular",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string"
+                                    },
+                                    "disciplina": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id": "0e99dc48-102c-4686-b5fb-b85ecb232d3a",
+                                    "disciplina": [
+                                        24,
+                                        25
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Associação realizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 51,
+                                        "id_aluno": "3c39faa8-1c9d-4e0c-9118-21225f728090",
+                                        "id_professorCursoDisciplina": 24
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida ou erro no processamento.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/turma": {
+            "post": {
+                "tags": [
+                    "Turma"
+                ],
+                "summary": "Criar turma",
+                "description": "Criar uma turma",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "nome": {
+                                        "type": "string"
+                                    },
+                                    "id_curso": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "nome": "2023.1",
+                                    "id_curso": 2
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Turma criada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "2023.1",
+                                        "id_curso": 2
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito na criação.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Turma já cadastrada no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Turma"
+                ],
+                "summary": "Deletar turma",
+                "description": "Deletar uma turma",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    }
+                                },
+                                "example": {
+                                    "id": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "turma deletada com sucesso"
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "turma não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "turma não existe no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Turma"
+                ],
+                "summary": "Atualizar turma",
+                "description": "Atualizar turma",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "number"
+                                    },
+                                    "nome": {
+                                        "type": "string",
+                                        "nullable": true
+                                    }
+                                },
+                                "example": {
+                                    "id": 1,
+                                    "nome": "2024.2"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "turma atualizada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "id": 1,
+                                        "nome": "2024.2"
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "turma não encontrada.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "turma não existe no sistema"
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Conflito na atualização.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "turma já cadastrada no sistema"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Turma"
+                ],
+                "summary": "Listar turma",
+                "description": "Listar turma",
+                "responses": {
+                    "200": {
+                        "description": "turma listadas com sucesso",
+                        "content": {
+                            "application/json": {
+                                "examples": {
+                                    "example 1": {
+                                        "value": {
+                                            "response": [
+                                                {
+                                                    "id": 18,
+                                                    "nome": "2023.1",
+                                                    "id_curso": 52
+                                                }
+                                            ],
+                                            "error": null
+                                        }
+                                    },
+                                    "example 2": {
+                                        "value": {
+                                            "response": [],
+                                            "error": null
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "user/login": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Fazer login",
+                "description": "fazer login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "email": "john@gmail.com",
+                                    "password": "00000"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Login feito com sucesso",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": {
+                                        "token": "eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1eyJhbGciOiJIUzI1"
+                                    },
+                                    "error": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Requisição inválida.",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Mensagem de erro"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Sem autorização",
+                        "content": {
+                            "application/json": {
+                                "example": {
+                                    "response": null,
+                                    "error": "Email ou senha incorreto"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

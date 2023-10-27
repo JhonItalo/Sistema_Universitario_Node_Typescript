@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Departamento {
+  id        Int         @id @default(autoincrement())
+  nome      String      @unique @db.VarChar(15)
+  cursos    Curso[]
+  professor Professor[]
+  User      User[]
+}
+
+model Curso {
+  id              Int               @id @default(autoincrement())
+  nome            String            @unique @db.VarChar(40)
+  id_departamento Int
+  departamento    Departamento      @relation(fields: [id_departamento], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  Turma           Turma[]
+  Aluno           Aluno[]
+  CursoDisciplina CursoDisciplina[]
+}
+
+model Professor {
+  id                       String                     @id @default(uuid()) @db.VarChar()
+  nome                     String                     @db.VarChar()
+  email                    String                     @unique @db.VarChar(25)
+  cpf                      String                     @unique @db.VarChar(15)
+  sexo                     Sexo
+  telefone                 String                     @db.VarChar()
+  createt_at               DateTime                   @default(now())
+  id_departamento          Int
+  departamento             Departamento               @relation(fields: [id_departamento], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  User                     User[]
+  ProfessorCursoDisciplina ProfessorCursoDisciplina[]
+}
+
+model Turma {
+  id       Int     @id @default(autoincrement())
+  nome     String  @db.VarChar()
+  id_curso Int
+  curso    Curso   @relation(fields: [id_curso], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  Aluno    Aluno[]
+}
+
+model Aluno {
+  id        String   @id @default(uuid()) @db.VarChar()
+  nome      String   @db.VarChar()
+  email     String   @db.VarChar(25)
+  cpf       String   @db.VarChar(15)
+  sexo      Sexo
+  telefone  String   @db.VarChar()
+  createdAt DateTime @default(now())
+  id_turma  Int
+  id_curso  Int
+  turma     Turma    @relation(fields: [id_turma], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  curso     Curso    @relation(fields: [id_curso], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  User                          User[]
+  AlunoProfessorCursoDisciplina AlunoProfessorCursoDisciplina[]
+}
+
+model Disciplina {
+  id              Int               @id @default(autoincrement())
+  nome            String            @db.VarChar()
+  carga_horaria   Int
+  CursoDisciplina CursoDisciplina[]
+}
+
+model CursoDisciplina {
+  id                       Int                        @id @default(autoincrement())
+  id_curso                 Int
+  id_disciplina            Int
+  curso                    Curso                      @relation(fields: [id_curso], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  disciplina               Disciplina                 @relation(fields: [id_disciplina], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  ProfessorCursoDisciplina ProfessorCursoDisciplina[]
+}
+
+model ProfessorCursoDisciplina {
+  id                            Int                             @id @default(autoincrement())
+  id_professor                  String
+  id_cursoDisciplina            Int
+  professor                     Professor                       @relation(fields: [id_professor], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  cursoDisciplina               CursoDisciplina                 @relation(fields: [id_cursoDisciplina], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  AlunoProfessorCursoDisciplina AlunoProfessorCursoDisciplina[]
+}
+
+model AlunoProfessorCursoDisciplina {
+  id                          Int                      @id @default(autoincrement())
+  id_aluno                    String
+  id_professorCursoDisciplina Int
+  aluno                       Aluno                    @relation(fields: [id_aluno], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  professorCursoDisciplina    ProfessorCursoDisciplina @relation(fields: [id_professorCursoDisciplina], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model User {
+  id              String     @id @default(uuid())
+  email           String     @unique @db.VarChar()
+  password        String     @db.VarChar()
+  status          UserStatus
+  id_departamento Int?
+  id_professor    String?
+  id_aluno        String?
+
+  departamento Departamento? @relation(fields: [id_departamento], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  professor    Professor?    @relation(fields: [id_professor], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  aluno        Aluno?        @relation(fields: [id_aluno], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+enum UserStatus {
+  departamento
+  professor
+  aluno
+}
+
+enum Sexo {
+  M
+  F
+}
