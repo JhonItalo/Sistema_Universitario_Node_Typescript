@@ -6,7 +6,7 @@ import { IUpdateAluno } from "../../../../domain/useCases/aluno/IUpdateAluno";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import DataNotFoundError from "../../../../presentation/erros/DataNotFoundError";
 import { AlunoNotFound, EmailAlreadyExists } from "../../../../presentation/erros/Constants";
-import { IUpdateAlunoUserDTO } from "../../../../domain/dtos/alunoDto";
+import { IUpdateAlunoUserDTO } from "../../../DTOs/alunoDTO";
 
 @injectable()
 class UpdateAlunoUseCase implements IUpdateAluno {

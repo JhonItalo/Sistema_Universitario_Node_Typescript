@@ -5,7 +5,7 @@ import { hash } from "bcrypt";
 import { ICreateAluno } from "../../../../domain/useCases/aluno/ICreateAluno";
 import { CpfAlreadyExists, EmailAlreadyExists } from "../../../../presentation/erros/Constants";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
-import { ICreateAlunoDTO } from "../../../../domain/dtos/alunoDto";
+import { ICreateAlunoDTO } from "../../../DTOs/alunoDTO";
 
 @injectable()
 class CreateAlunoUseCase implements ICreateAluno {

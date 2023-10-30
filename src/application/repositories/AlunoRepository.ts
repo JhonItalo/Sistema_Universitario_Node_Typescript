@@ -1,7 +1,7 @@
 import { IAlunoRepository } from "../../domain/repositories/IAlunoRepository";
 import { Aluno } from "@prisma/client";
 import { prisma } from "../../infra/database/prismaClient";
-import { ICreateAlunoUserDTO, IUpdateAlunoUserDTO } from "../../domain/dtos/alunoDto";
+import { ICreateAlunoUserDTO, IUpdateAlunoUserDTO } from "../DTOs/alunoDTO";
 import { RedisClient } from "../../infra/database/redisClient";
 
 class AlunoRepository implements IAlunoRepository {

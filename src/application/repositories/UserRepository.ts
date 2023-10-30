@@ -1,7 +1,7 @@
 import { IUserRepository } from "../../domain/repositories/IUserRepository";
 import { User } from "@prisma/client";
 import { prisma } from "../../infra/database/prismaClient";
-import { IUserStatusDTO } from "../../domain/dtos/userDto";
+import { IUserStatusDTO } from "../DTOs/userDTO";
 
 class UserRepository implements IUserRepository {
   private prisma: typeof prisma.user;

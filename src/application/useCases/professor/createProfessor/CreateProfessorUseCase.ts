@@ -5,7 +5,7 @@ import { ICreateProfessor } from "../../../../domain/useCases/professor/ICreateP
 import { inject, injectable } from "tsyringe";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import { CpfAlreadyExists, EmailAlreadyExists } from "../../../../presentation/erros/Constants";
-import { ICreateProfessorDTO } from "../../../../domain/dtos/professorDto";
+import { ICreateProfessorDTO } from "../../../DTOs/professorDTO";
 
 @injectable()
 class CreateProfessorUseCase implements ICreateProfessor {

@@ -5,7 +5,7 @@ import { Curso } from "@prisma/client";
 import DataNotFoundError from "../../../../presentation/erros/DataNotFoundError";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import { CursoAlreadyExists, CursoNotFound } from "../../../../presentation/erros/Constants";
-import { IUpdateCursoDTO } from "../../../../domain/dtos/cursoDto";
+import { IUpdateCursoDTO } from "../../../DTOs/cursoDTO";
 
 @injectable()
 class UpdateCursoUseCase implements IUpdateCurso {

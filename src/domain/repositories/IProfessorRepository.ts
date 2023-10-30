@@ -1,6 +1,9 @@
 import { Professor } from "@prisma/client";
 
-import { ICreateProfessorUserDTO, IUpdateProfessorUserDTO } from "../dtos/professorDto";
+import {
+  ICreateProfessorUserDTO,
+  IUpdateProfessorUserDTO,
+} from "../../application/DTOs/professorDTO";
 
 interface IProfessorRepository {
   hasCache<T>(key: string): Promise<T | null>;

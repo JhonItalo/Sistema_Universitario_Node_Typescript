@@ -1,7 +1,7 @@
 import { Disciplina } from "@prisma/client";
 import { prisma } from "../../infra/database/prismaClient";
 import { IDisciplinaRepository } from "../../domain/repositories/IDisciplinaRepository";
-import { ICreateDisciplinaDTO, IUpdateDisciplinaDTO } from "../../domain/dtos/disciplina";
+import { ICreateDisciplinaDTO, IUpdateDisciplinaDTO } from "../DTOs/disciplinaDTO";
 
 class DisciplinaRepository implements IDisciplinaRepository {
   private repository: typeof prisma.disciplina;

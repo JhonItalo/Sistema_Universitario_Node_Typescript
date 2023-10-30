@@ -8,7 +8,7 @@ import {
   DisciplinaAlreadyExists,
   DisciplinaNotFound,
 } from "../../../../presentation/erros/Constants";
-import { IUpdateDisciplinaDTO } from "../../../../domain/dtos/disciplina";
+import { IUpdateDisciplinaDTO } from "../../../DTOs/disciplinaDTO";
 
 @injectable()
 class UpdateDisciplinaUseCase implements IUpdateDisciplina {

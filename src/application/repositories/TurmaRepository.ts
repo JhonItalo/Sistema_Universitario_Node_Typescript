@@ -2,7 +2,7 @@ import { Turma } from "@prisma/client";
 import { prisma } from "../../infra/database/prismaClient";
 
 import { ITurmaRepository } from "../../domain/repositories/ITurmaRepository";
-import { ICreateTurmaDTO, IUpdateTurmaDTO } from "../../domain/dtos/turma";
+import { ICreateTurmaDTO, IUpdateTurmaDTO } from "../DTOs/turmaDTO";
 
 class TurmaRepository implements ITurmaRepository {
   private prisma: typeof prisma.turma;

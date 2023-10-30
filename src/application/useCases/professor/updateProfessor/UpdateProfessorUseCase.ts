@@ -5,7 +5,7 @@ import { IUpdateProfessor } from "../../../../domain/useCases/professor/IUpdateP
 import DataNotFoundError from "../../../../presentation/erros/DataNotFoundError";
 import { EmailAlreadyExists, ProfessorNotFound } from "../../../../presentation/erros/Constants";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
-import { IUpdateProfessorUserDTO } from "../../../../domain/dtos/professorDto";
+import { IUpdateProfessorUserDTO } from "../../../DTOs/professorDTO";
 
 @injectable()
 class UpdateProfessorUseCase implements IUpdateProfessor {

@@ -3,7 +3,7 @@ import { Professor } from "@prisma/client";
 import { prisma } from "../../infra/database/prismaClient";
 import { RedisClient } from "../../infra/database/redisClient";
 
-import { ICreateProfessorUserDTO, IUpdateProfessorUserDTO } from "../../domain/dtos/professorDto";
+import { ICreateProfessorUserDTO, IUpdateProfessorUserDTO } from "../DTOs/professorDTO";
 
 class ProfessorRepository implements IProfessorRepository {
   private repository: typeof prisma.professor;

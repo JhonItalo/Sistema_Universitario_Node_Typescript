@@ -1,5 +1,5 @@
 import { Aluno } from "@prisma/client";
-import { ICreateAlunoDTO } from "../../dtos/alunoDto";
+import { ICreateAlunoDTO } from "../../../application/DTOs/alunoDTO";
 
 interface ICreateAluno {
   execute(aluno: ICreateAlunoDTO): Promise<Aluno>;

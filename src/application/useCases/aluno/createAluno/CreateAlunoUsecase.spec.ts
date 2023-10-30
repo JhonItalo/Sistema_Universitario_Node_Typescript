@@ -1,6 +1,6 @@
 import { mock, MockProxy, mockReset } from "jest-mock-extended";
 
-import { ICreateAlunoDTO } from "../../../../domain/dtos/alunoDto";
+import { ICreateAlunoDTO } from "../../../DTOs/alunoDTO";
 import { IAlunoRepository } from "../../../../domain/repositories/IAlunoRepository";
 import { CpfAlreadyExists, EmailAlreadyExists } from "../../../../presentation/erros/Constants";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
