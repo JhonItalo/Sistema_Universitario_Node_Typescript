@@ -7,14 +7,33 @@ import { CpfAlreadyExists, EmailAlreadyExists } from "../../../../presentation/e
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import { ICreateAlunoDTO } from "../../../DTOs/alunoDTO";
 
+import IAlunoRepositoryInMemory from "../../../../domain/repositories/inMemory/IAlunoRepositoryInMemory";
+
 @injectable()
 class CreateAlunoUseCase implements ICreateAluno {
   constructor(
     @inject("AlunoRepository")
-    private alunoRepository: IAlunoRepository
+    private alunoRepository: IAlunoRepository,
+    @inject("AlunoRepositoryInMemory")
+    private alunoRepositoryInMemory: IAlunoRepositoryInMemory
   ) {}
 
   async execute(aluno: ICreateAlunoDTO): Promise<Aluno> {
+    // regra de dominio--------------------------------------------------------------------
+    /* 
+    const AlunoEntityt = new AlunoEntity(aluno);
+
+    AlunoEntityt.validEmail()
+
+    AlunoEntityt.validCpf()
+    
+    const UserEntity = new UserEntity(aluno.email, password)
+
+    UserEntity.validPassword().
+
+    */
+    //----------------------------------------------------------------------------------------------
+    //regra de aplicação
     const cpfExist = await this.alunoRepository.findBy({ cpf: aluno.cpf });
 
     if (cpfExist) {
@@ -25,9 +44,14 @@ class CreateAlunoUseCase implements ICreateAluno {
     if (emailExist) {
       throw new DataConflictError(EmailAlreadyExists);
     }
+
     const password = await hash(aluno.cpf + aluno.nome, 10);
 
-    return await this.alunoRepository.create({ ...aluno, password });
+    const alunocreated = await this.alunoRepository.create({ ...aluno, password });
+
+    await this.alunoRepositoryInMemory.resetCache("aluno_list");
+
+    return alunocreated;
   }
 }
 

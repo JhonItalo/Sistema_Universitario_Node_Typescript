@@ -1,5 +1,5 @@
 import { Disciplina } from "@prisma/client";
-import { ICreateDisciplinaDTO, IUpdateDisciplinaDTO } from "../../application/DTOs/disciplinaDTO";
+import { ICreateDisciplinaDTO, IUpdateDisciplinaDTO } from "../DTOs/disciplinaDTO";
 
 interface IDisciplinaRepository {
   create(data: ICreateDisciplinaDTO): Promise<Disciplina>;

@@ -6,7 +6,7 @@ import { Aluno } from "@prisma/client";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import DataNotFoundError from "../../../../presentation/erros/DataNotFoundError";
 import { AlunoNotFound, EmailAlreadyExists } from "../../../../presentation/erros/Constants";
-import { IUpdateAlunoDTO } from "../../../DTOs/alunoDTO";
+import { IUpdateAlunoDTO } from "../../../../domain/DTOs/alunoDTO";
 
 describe("UpdateAlunoUseCase", () => {
   let updateAlunoUseCase: UpdateAlunoUseCase;

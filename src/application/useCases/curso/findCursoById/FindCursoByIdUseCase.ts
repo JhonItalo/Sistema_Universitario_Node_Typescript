@@ -4,7 +4,7 @@ import DataNotFoundError from "../../../../presentation/erros/DataNotFoundError"
 import { CursoNotFound } from "../../../../presentation/erros/Constants";
 import { IFindCursoById } from "../../../../domain/useCases/curso/IFindCursoById";
 import { Curso } from "@prisma/client";
-import { ICreateCursoDTO } from "../../../DTOs/cursoDTO";
+
 
 @injectable()
 class FindCursoByIdUseCase implements IFindCursoById {

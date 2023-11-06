@@ -1,5 +1,5 @@
 import { Turma } from "@prisma/client";
-import { ICreateTurmaDTO } from "../../../application/DTOs/turmaDTO";
+import { ICreateTurmaDTO } from "../../DTOs/turmaDTO";
 
 interface ICreateTurma {
   execute({ nome, id_curso }: ICreateTurmaDTO): Promise<Turma>;

@@ -1,7 +1,7 @@
-import { ICreateCursoDTO, IUpdateCursoDTO } from "../DTOs/cursoDTO";
 import { ICursoRepository } from "../../domain/repositories/ICursoRepository";
 import { prisma } from "../../infra/database/prismaClient";
 import { Curso } from "@prisma/client";
+import { ICreateCursoDTO, IUpdateCursoDTO } from "../DTOs/cursoDTO";
 
 class CursoRepository implements ICursoRepository {
   private prisma: typeof prisma.curso;

@@ -14,7 +14,7 @@ import schemaAddDisciplina from "../validator/schema/curso/AddDisciplinaSchema";
 import Authentication from "../middlewares/Authentication";
 
 import { departamento, aluno } from "../../utils/Constants";
-import ExpressAdapter from "../adapters/ExpressAdapter";
+import ExpressAdapter from "../../infra/adapters/express/ExpressAdapter";
 const CursoRoutes = Router();
 
 CursoRoutes.post(

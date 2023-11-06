@@ -10,7 +10,7 @@ import schemaUpdateDisciplina from "../validator/schema/disciplina/UpdateDiscipl
 
 import Authentication from "../middlewares/Authentication";
 import { departamento } from "../../utils/Constants";
-import ExpressAdapter from "../adapters/ExpressAdapter";
+import ExpressAdapter from "../../infra/adapters/express/ExpressAdapter";
 const DisciplinaRoutes = Router();
 
 DisciplinaRoutes.post(

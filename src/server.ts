@@ -14,4 +14,4 @@ server.doc();
 
 server.routes();
 
-server.start();
+server.start().finally(() => server.disconect());

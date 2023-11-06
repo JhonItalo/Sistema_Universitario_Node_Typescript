@@ -6,6 +6,7 @@ import { IUpdateTurma } from "../../../../domain/useCases/turma/IUpdateTurma";
 import { TurmaAlreadyExists, TurmaNotFound } from "../../../../presentation/erros/Constants";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import { IUpdateTurmaDTO } from "../../../DTOs/turmaDTO";
+
 @injectable()
 class UpdateTurmaUseCase implements IUpdateTurma {
   constructor(@inject("TurmaRepository") private turmaRepository: ITurmaRepository) {}

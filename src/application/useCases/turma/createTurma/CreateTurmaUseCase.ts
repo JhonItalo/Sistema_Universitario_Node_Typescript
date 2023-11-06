@@ -4,6 +4,7 @@ import { ICreateTurma } from "../../../../domain/useCases/turma/ICreateTurma";
 import { inject, injectable } from "tsyringe";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import { TurmaAlreadyExists } from "../../../../presentation/erros/Constants";
+
 import { ICreateTurmaDTO } from "../../../DTOs/turmaDTO";
 
 @injectable()

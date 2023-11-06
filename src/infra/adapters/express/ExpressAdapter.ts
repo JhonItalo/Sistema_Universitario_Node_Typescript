@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IHttpRequest } from "../protocols/http";
+import { IHttpRequest } from "../../../presentation/protocols/http";
 
 class ExpressAdapter {
   static adapt(controller) {

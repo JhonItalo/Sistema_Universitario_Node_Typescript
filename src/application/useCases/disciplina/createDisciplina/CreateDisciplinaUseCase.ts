@@ -5,6 +5,7 @@ import { Disciplina } from "@prisma/client";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import { DisciplinaAlreadyExists } from "../../../../presentation/erros/Constants";
 import { ICreateDisciplinaDTO } from "../../../DTOs/disciplinaDTO";
+
 @injectable()
 class CreateDisciplinaUsecase implements ICreateDisciplina {
   constructor(

@@ -15,6 +15,7 @@ import TurmaRoutes from "./presentation/routes/TurmaRoutes";
 import ProfessorRoutes from "./presentation/routes/ProfessorRoutes";
 
 import { RedisClient } from "./infra/database/redisClient";
+import { prisma } from "./infra/database/prismaClient";
 
 class App {
   app: express.Application;
@@ -40,6 +41,9 @@ class App {
   }
   async connectDb() {
     await RedisClient.connect();
+  }
+  async disconect() {
+    await prisma.$disconnect();
   }
   async start() {
     this.app.listen(3000, () => {

@@ -17,6 +17,7 @@ import CursoDisciplinaRepository from "../../application/repositories/CursoDisci
 import DisciplinaRepository from "../../application/repositories/DisciplinaRepository";
 import ProfessorCursoDisciplinaRepository from "../../application/repositories/ProfessorCursoDisciplinaRepository";
 import AlunoProfessorCursoDisciplinaRepository from "../../application/repositories/AlunoProfessorCursoDisciplinaRepository"; //repositories
+import AlunoRepositoryInMemory from "../../application/repositories/inMemory/AlunoRepositoyInMemory";
 container.registerSingleton<IAlunoRepository>("AlunoRepository", AlunoRepository);
 container.registerSingleton<IProfessorRepository>("ProfessorRepository", ProfessorRepository);
 container.registerSingleton<ITurmaRepository>("TurmaRepository", TurmaRepository);
@@ -35,3 +36,5 @@ container.registerSingleton(
   AlunoProfessorCursoDisciplinaRepository
 );
 container.registerSingleton<IUserRepository>("UserRepository", UserRepository);
+//IN memory repository
+container.registerSingleton("AlunoRepositoryInMemory", AlunoRepositoryInMemory);

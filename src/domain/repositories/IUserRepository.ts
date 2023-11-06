@@ -1,5 +1,5 @@
 import { User } from "@prisma/client";
-import { IUserStatusDTO } from "../../application/DTOs/userDTO";
+import { IUserStatusDTO } from "../DTOs/userDTO";
 
 interface IUserRepository {
   findBy(data: Partial<User>): Promise<User>;

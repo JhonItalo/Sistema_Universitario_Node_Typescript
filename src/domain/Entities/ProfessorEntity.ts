@@ -1,4 +1,6 @@
-export default class Professor {
+import CursoDisciplinaProfessorEntity from "./CursoDisciplinaProfessorEntity";
+
+export default class ProfessorEntity {
   id: number;
   nome: string;
   email: string;
@@ -7,8 +9,9 @@ export default class Professor {
   telefone: string;
   createtAt: Date;
   id_departamento: number;
+  curso_disciplina_professor: CursoDisciplinaProfessorEntity;
 
-  constructor(data: Professor) {
+  constructor(data: ProfessorEntity) {
     this.id = data.id;
     this.nome = data.nome;
     this.email = data.email;

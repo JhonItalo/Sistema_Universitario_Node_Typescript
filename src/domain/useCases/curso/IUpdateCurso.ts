@@ -1,5 +1,5 @@
 import { Curso } from "@prisma/client";
-import { IUpdateCursoDTO } from "../../../application/DTOs/cursoDTO";
+import { IUpdateCursoDTO } from "../../DTOs/cursoDTO";
 
 interface IUpdateCurso {
   execute({ id, updateCurso }: IUpdateCursoDTO): Promise<Curso>;

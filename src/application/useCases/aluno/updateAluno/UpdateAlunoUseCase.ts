@@ -1,16 +1,20 @@
 import { Aluno } from "@prisma/client";
 import { IAlunoRepository } from "../../../../domain/repositories/IAlunoRepository";
-
 import { injectable, inject } from "tsyringe";
 import { IUpdateAluno } from "../../../../domain/useCases/aluno/IUpdateAluno";
 import DataConflictError from "../../../../presentation/erros/DataConflictError";
 import DataNotFoundError from "../../../../presentation/erros/DataNotFoundError";
 import { AlunoNotFound, EmailAlreadyExists } from "../../../../presentation/erros/Constants";
 import { IUpdateAlunoUserDTO } from "../../../DTOs/alunoDTO";
+import IAlunoRepositoryInMemory from "../../../../domain/repositories/inMemory/IAlunoRepositoryInMemory";
 
 @injectable()
 class UpdateAlunoUseCase implements IUpdateAluno {
-  constructor(@inject("AlunoRepository") private alunoRepository: IAlunoRepository) {}
+  constructor(
+    @inject("AlunoRepository") private alunoRepository: IAlunoRepository,
+    @inject("AlunoRepositoryInmemory")
+    private alunoRepositoryInMemory: IAlunoRepositoryInMemory
+  ) {}
 
   async execute({ id, updateAluno, updateUser }: IUpdateAlunoUserDTO): Promise<Aluno> {
     const alunoUpdateRemoveUndefined = Object.entries(updateAluno).reduce((acc, [key, value]) => {
@@ -47,12 +51,16 @@ class UpdateAlunoUseCase implements IUpdateAluno {
       }
     }
 
-    return this.alunoRepository.update({
+    const alunoUpdated = await this.alunoRepository.update({
       id,
       email: aluno.email,
       updateAluno,
       updateUser,
     });
+
+    await this.alunoRepositoryInMemory.resetCache("aluno_list");
+
+    return alunoUpdated;
   }
 }
 

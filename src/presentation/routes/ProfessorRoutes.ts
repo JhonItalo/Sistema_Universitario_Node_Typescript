@@ -15,7 +15,7 @@ import Authentication from "../middlewares/Authentication";
 
 import { departamento, professor } from "../../utils/Constants";
 import Authorization from "../middlewares/Authorization";
-import ExpressAdapter from "../adapters/ExpressAdapter";
+import ExpressAdapter from "../../infra/adapters/express/ExpressAdapter";
 import FindProfessorByCpfController from "../controllers/professor/FindProfessorByCpfController";
 import FindProfessorByEmailController from "../controllers/professor/FinProfessorByEmailController";
 const ProfessorRoutes = Router();

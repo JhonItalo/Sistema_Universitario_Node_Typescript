@@ -1,9 +1,7 @@
 import { Aluno } from "@prisma/client";
-import { ICreateAlunoUserDTO, IUpdateAlunoUserDTO } from "../../application/DTOs/alunoDTO";
+import { ICreateAlunoUserDTO, IUpdateAlunoUserDTO } from "../DTOs/alunoDTO";
 
 interface IAlunoRepository {
-  hasCache<T>(key: string): Promise<T | null>;
-
   create(data: ICreateAlunoUserDTO): Promise<Aluno>;
 
   update(data: IUpdateAlunoUserDTO): Promise<Aluno>;

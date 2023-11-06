@@ -1,5 +1,5 @@
 import { Turma } from "@prisma/client";
-import { IUpdateTurmaDTO } from "../../../application/DTOs/turmaDTO";
+import { IUpdateTurmaDTO } from "../../DTOs/turmaDTO";
 
 interface IUpdateTurma {
   execute({ id, nome }: IUpdateTurmaDTO): Promise<Turma>;

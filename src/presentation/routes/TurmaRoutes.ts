@@ -11,7 +11,7 @@ import schemaUpdateTurma from "../validator/schema/turma/UpdateTurmaSchema";
 import Authentication from "../middlewares/Authentication";
 
 import { departamento } from "../../utils/Constants";
-import ExpressAdapter from "../adapters/ExpressAdapter";
+import ExpressAdapter from "../../infra/adapters/express/ExpressAdapter";
 
 const TurmaRoutes = Router();
 

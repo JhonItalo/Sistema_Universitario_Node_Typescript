@@ -16,7 +16,7 @@ import Authentication from "../middlewares/Authentication";
 import Authorization from "../middlewares/Authorization";
 
 import { departamento, aluno } from "../../utils/Constants";
-import ExpressAdapter from "../adapters/ExpressAdapter";
+import ExpressAdapter from "../../infra/adapters/express/ExpressAdapter";
 
 const AlunoRoutes = Router();
 

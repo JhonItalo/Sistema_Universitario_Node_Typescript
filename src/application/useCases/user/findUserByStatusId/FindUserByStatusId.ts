@@ -1,7 +1,6 @@
 import { inject, injectable } from "tsyringe";
 import { IUserRepository } from "../../../../domain/repositories/IUserRepository";
 import { User } from "@prisma/client";
-import { IUserStatusDTO } from "../../../DTOs/userDTO";
 
 @injectable()
 class FindUserByStatusIdUseCase {

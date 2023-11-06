@@ -1,5 +1,5 @@
 import { Curso } from "@prisma/client";
-import { ICreateCursoDTO } from "../../../application/DTOs/cursoDTO";
+import { ICreateCursoDTO } from "../../DTOs/cursoDTO";
 
 interface ICreateCurso {
   execute({ nome, id_departamento }: ICreateCursoDTO): Promise<Curso>;

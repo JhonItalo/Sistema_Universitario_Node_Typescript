@@ -32,7 +32,7 @@ model Professor {
   cpf                      String                     @unique @db.VarChar(15)
   sexo                     Sexo
   telefone                 String                     @db.VarChar()
-  createt_at               DateTime                   @default(now())
+  createdAt                DateTime                   @default(now())
   id_departamento          Int
   departamento             Departamento               @relation(fields: [id_departamento], references: [id], onDelete: Cascade, onUpdate: Cascade)
   User                     User[]

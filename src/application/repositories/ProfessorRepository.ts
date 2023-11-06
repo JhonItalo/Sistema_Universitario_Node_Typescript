@@ -2,7 +2,6 @@ import { IProfessorRepository } from "../../domain/repositories/IProfessorReposi
 import { Professor } from "@prisma/client";
 import { prisma } from "../../infra/database/prismaClient";
 import { RedisClient } from "../../infra/database/redisClient";
-
 import { ICreateProfessorUserDTO, IUpdateProfessorUserDTO } from "../DTOs/professorDTO";
 
 class ProfessorRepository implements IProfessorRepository {

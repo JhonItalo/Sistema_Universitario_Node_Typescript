@@ -1,5 +1,5 @@
 import { Disciplina } from "@prisma/client";
-import { IUpdateDisciplinaDTO } from "../../../application/DTOs/disciplinaDTO";
+import { IUpdateDisciplinaDTO } from "../../DTOs/disciplinaDTO";
 
 interface IUpdateDisciplina {
   execute({ id, nome, carga_horaria }: IUpdateDisciplinaDTO): Promise<Disciplina>;
