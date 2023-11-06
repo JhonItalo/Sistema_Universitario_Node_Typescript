@@ -2,7 +2,7 @@ import { container } from "tsyringe";
 import ErrorHandle from "../../erros/ErrorHandle";
 import { IHttpRequest, IHttpResponse } from "../../protocols/http";
 import FindAlunoByIdUseCase from "../../../application/useCases/aluno/findAlunoById/FindALunoByIdUseCase";
-import ChangeDisciplinaUseCase from "../../../application/useCases/alunoProfessorCursoDisciplina/changeDisciplina/ChangeDisciplinaUseCase";
+import ChangeDisciplinaUseCase from "../../../application/useCases/aluno/changeDisciplina/ChangeDisciplinaUseCase";
 
 class ChangeDisciplinaController {
   async handle(request: IHttpRequest): Promise<IHttpResponse> {

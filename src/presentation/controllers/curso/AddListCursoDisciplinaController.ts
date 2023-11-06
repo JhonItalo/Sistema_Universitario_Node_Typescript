@@ -2,7 +2,7 @@ import { container } from "tsyringe";
 import ErrorHandle from "../../erros/ErrorHandle";
 import FindCursoByIdUseCase from "../../../application/useCases/curso/findCursoById/FindCursoByIdUseCase";
 import { IHttpRequest, IHttpResponse } from "../../protocols/http";
-import AddListCursoDisciplinaUseCase from "../../../application/useCases/cursoDisciplina/addListCursoDisciplina/AddListCursoDisciplinaUseCase";
+import AddListCursoDisciplinaUseCase from "../../../application/useCases/curso/addListCursoDisciplina/AddListCursoDisciplinaUseCase";
 
 class AddListCursoDisciplinaController {
   async handle(request: IHttpRequest): Promise<IHttpResponse> {

@@ -1,5 +1,5 @@
 import { container } from "tsyringe";
-import FindAlunoProfessorCursoDisciplinaByAlunoIdUseCase from "../../../application/useCases/alunoProfessorCursoDisciplina/findAlunoProfessorCursoDisciplinaByAlunoId/FindAlunoProfessorCursoDisciplinaByAlunoIdUseCase";
+import FindGradeByAlunoIdUseCase from "../../../application/useCases/aluno/findAlunoProfessorCursoDisciplinaByAlunoId/FindAlunoProfessorCursoDisciplinaByAlunoIdUseCase";
 import ErrorHandle from "../../erros/ErrorHandle";
 import FindAlunoByIdUseCase from "../../../application/useCases/aluno/findAlunoById/FindALunoByIdUseCase";
 import { IHttpRequest, IHttpResponse } from "../../protocols/http";
@@ -8,9 +8,8 @@ class FindGradeController {
   async handle(request: IHttpRequest): Promise<IHttpResponse> {
     const findAlunoByIdUseCase = container.resolve(FindAlunoByIdUseCase);
 
-    const findAlunoProfessorCursoDisciplinaByAlunoIdUseCase = container.resolve(
-      FindAlunoProfessorCursoDisciplinaByAlunoIdUseCase
-    );
+    const findAlunoProfessorCursoDisciplinaByAlunoIdUseCase =
+      container.resolve(FindGradeByAlunoIdUseCase);
 
     try {
       const { id } = request.params;
