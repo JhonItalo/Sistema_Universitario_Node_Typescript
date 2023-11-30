@@ -13,6 +13,7 @@ class FindGradeController {
 
     try {
       const { id } = request.params;
+      
       await findAlunoByIdUseCase.execute(id);
 
       const grade = await findAlunoProfessorCursoDisciplinaByAlunoIdUseCase.execute(id);

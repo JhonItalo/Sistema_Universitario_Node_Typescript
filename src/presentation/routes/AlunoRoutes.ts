@@ -15,7 +15,7 @@ import schemaChangeDisciplina from "../validator/schema/aluno/ChangeDisciplinaSc
 import Authentication from "../middlewares/Authentication";
 import Authorization from "../middlewares/Authorization";
 
-import { departamento, aluno } from "../../utils/Constants";
+import { departamento, aluno } from "../../utils/constants";
 import ExpressAdapter from "../../infra/adapters/express/ExpressAdapter";
 
 const AlunoRoutes = Router();
