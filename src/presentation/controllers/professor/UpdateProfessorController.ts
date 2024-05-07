@@ -1,29 +1,24 @@
-import UpdateProfessorUseCase from "../../../application/useCases/professor/updateProfessor/UpdateProfessorUseCase";
-import { container } from "tsyringe";
-import ErrorHandle from "../../erros/ErrorHandle";
-import EmailIsValidUserUseCase from "../../../application/useCases/user/EmailIsValidUser/EmailIsValidUserUseCase";
-import { IHttpRequest, IHttpResponse } from "../../protocols/http";
+import { container } from 'tsyringe';
+import ErrorHandle from '../../erros/ErrorHandle';
+import { IHttpRequest, IHttpResponse } from '../../protocols/http';
+import UpdateProfessorUseCase from '../../../modules/professor/application/useCases/updateProfessor/updateProfessor.useCase';
 
 class UpdateProfessorController {
-  async handle(request: IHttpRequest): Promise<IHttpResponse> {
-    const emailIsValidUserUseCase = container.resolve(EmailIsValidUserUseCase);
-    const updateProfessorUseCase = container.resolve(UpdateProfessorUseCase);
+	async handle(request: IHttpRequest): Promise<IHttpResponse> {
+		const updateProfessorUseCase = container.resolve(UpdateProfessorUseCase);
 
-    try {
-      const { id, nome, email, sexo, telefone, id_departamento, password } = request.body;
-      const updateProfessor = { id, nome, email, sexo, telefone, id_departamento };
-      const updateUser = { email, password };
+		try {
+			const professor = request.body;
+			const professorUpdated = await updateProfessorUseCase.execute({
+				...professor,
+			});
 
-      if (email) {
-        await emailIsValidUserUseCase.execute(email);
-      }
-      const professor = await updateProfessorUseCase.execute({ id, updateProfessor, updateUser });
-
-      return { statusCode: 200, data: { response: professor, error: null } };
-    } catch (error) {
-      return ErrorHandle(error);
-    }
-  }
+			return { statusCode: 200, data: { response: professorUpdated, error: null } };
+		} catch (error) {
+			console.log(error, 'erorr');
+			return ErrorHandle(error);
+		}
+	}
 }
 
 export default UpdateProfessorController;

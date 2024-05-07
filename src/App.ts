@@ -2,7 +2,7 @@ import express from "express";
 
 import { corsOptions } from "./shared/config/cors";
 import cors from "cors";
-import ratelimiter from "./presentation/middlewares/RateLimit";
+import ratelimiter from "./presentation/middlewares/RateLimit.middle";
 
 import swaggerUi from "swagger-ui-express";
 import swaggerFile from "./documentation/swagger.json";
@@ -25,29 +25,29 @@ class App {
   }
   config() {
     this.app.use(express.json());
-    this.app.use(ratelimiter);
-    this.app.use(cors(corsOptions));
+  //  this.app.use(ratelimiter);
+   // this.app.use(cors(corsOptions));
   }
   doc() {
     this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile));
   }
   routes() {
-    this.app.use("/user", UserRoutes);
+  this.app.use("/user", UserRoutes); 
     this.app.use("/aluno", AlunoRoutes);
     this.app.use("/curso", CursoRoutes);
     this.app.use("/disciplina", DisciplinaRoutes);
     this.app.use("/turma", TurmaRoutes);
-    this.app.use("/professor", ProfessorRoutes);
+    this.app.use("/professor", ProfessorRoutes); 
   }
-  async connectDb() {
+ /*  async connectDb() {
     await RedisClient.connect();
-  }
+  } */
   async disconect() {
     await prisma.$disconnect();
   }
   async start() {
     this.app.listen(3000, () => {
-      console.log(`Servidor iniciado na porta 3000.`);
+      console.log(`Servidor iniciado na porta 4000.`);
     });
   }
 }

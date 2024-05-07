@@ -1,7 +1,7 @@
-import UpdateTurmaUseCase from "../../../application/useCases/turma/updateTurma/UpdateTurmaUseCase";
 import { container } from "tsyringe";
 import ErrorHandle from "../../erros/ErrorHandle";
 import { IHttpRequest, IHttpResponse } from "../../protocols/http";
+import UpdateTurmaUseCase from "../../../modules/turma/application/useCases/updateTurma/updateTurma.useCase";
 
 class UpdateTurmaController {
   async handle(request: IHttpRequest): Promise<IHttpResponse> {

@@ -8,7 +8,7 @@ const server = new App();
 
 server.config();
 
-server.connectDb();
+/* server.connectDb(); */
 
 server.doc();
 

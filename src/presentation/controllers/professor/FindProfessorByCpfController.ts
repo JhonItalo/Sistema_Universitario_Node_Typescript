@@ -1,7 +1,7 @@
 import { container } from "tsyringe";
 import ErrorHandle from "../../erros/ErrorHandle";
-import FindProfessorByCpfUseCase from "../../../application/useCases/professor/findProfessorByCpf/FindByCpfProfessorUseCase";
 import { IHttpRequest, IHttpResponse } from "../../protocols/http";
+import FindProfessorByCpfUseCase from "../../../modules/professor/application/useCases/findProfessorByCpf.useCase.ts/findProfessorByCpf.useCase";
 
 class FindProfessorByCpfController {
   async handle(request: IHttpRequest): Promise<IHttpResponse> {
